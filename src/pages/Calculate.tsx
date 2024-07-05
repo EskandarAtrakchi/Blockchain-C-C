@@ -21,9 +21,9 @@ import { useState } from "react";
 // Mark the component for client-side execution
 export default function Calculate() {
   const [gender, setGender] = useState("male");
-  const [age, setAge] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
+  const [age, setAge] = useState("25");
+  const [height, setHeight] = useState("180");
+  const [weight, setWeight] = useState("75");
   const [activityLevel, setActivityLevel] = useState("1.2");
   const [result, setResult] = useState<string | null>(null);
 
