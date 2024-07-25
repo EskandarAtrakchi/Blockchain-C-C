@@ -1,7 +1,6 @@
-// import { useState } from "react";
-import { useReadContract } from "wagmi";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
-
+import { readContract } from "@wagmi/core";
 import {
   Dialog,
   DialogTrigger,
@@ -12,37 +11,72 @@ import {
 } from "../components/ui/dialog";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
-
-// import { config } from "../wagmi";
-
-//importing abi contract integration
-import { abi } from "../components/caloriesCalc-ABI";
-
-const wagmiContractConfig = {
-  address: "0x72805661557035298b11834EAB468bDFe7966f92",
-  abi: abi,
-};
+import { abi } from "../components/caloriesCalc-ABI.ts";
+import { config } from "../wagmi.ts";
 
 export default function RetrieveRecords() {
   const { address } = useAccount();
-
-  const {
-    data: gender,
-    age,
-    height,
-    weight,
-    activityLevel,
-    calories,
-  } = useReadContract({
-    ...wagmiContractConfig,
-    functionName: "getUserCalculations",
-    args: ["0x72805661557035298b11834EAB468bDFe7966f92"],
+  const [data, setData] = useState({
+    gender: "",
+    age: 0,
+    height: 0,
+    weight: 0,
+    activityLevel: 0,
+    calories: 0,
   });
+
+  useEffect(() => {
+    if (address) {
+      async function fetchContractData() {
+        try {
+          const userCalculations = await readContract(config, {
+            abi,
+            address: "0x72805661557035298b11834EAB468bDFe7966f92",
+            functionName: "getUserCalculations",
+            args: [address?.toString()],
+          });
+
+          if (userCalculations.length > 0) {
+            // let change = 1;
+            // for (let i = 0; i <= userCalculations.length; i++) {
+            //   change++;
+            // }
+            const latestIndex = userCalculations[userCalculations.length - 1];
+
+            const result = await readContract(config, {
+              abi,
+              address: "0x72805661557035298b11834EAB468bDFe7966f92",
+              functionName: "getCalculation",
+              args: [latestIndex],
+            });
+
+            setData({
+              gender: data.gender.toString(),
+              age: parseInt(result.age.toString()),
+              height: parseInt(result.height.toString()),
+              weight: parseInt(result.weight.toString()),
+              activityLevel: parseInt(result.activityLevel.toString()),
+              calories: parseInt(result.calories.toString()),
+            });
+          } else {
+            alert("out of bound exception");
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      fetchContractData();
+    }
+  }, [address]);
 
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="bg-black text-white hover:text-black float-right" asChild>
+        <DialogTrigger
+          className="bg-black text-white hover:text-black float-right"
+          asChild
+        >
           <Button>Update Profile</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[600px] bg-white">
@@ -62,32 +96,38 @@ export default function RetrieveRecords() {
               <br />
               <div className="space-y-2">
                 <Label htmlFor="gender">Gender</Label>
-                {gender?.toString()}
+                {data.gender}
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="age">Age</Label>
-                {age?.toString()}
+                {data.age}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="height">Height</Label>
-                {height?.toString()}
+                {data.height}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="weight">Weight</Label>
-                {weight?.toString()}
+                {data.weight}
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="activity">Activity Level</Label>
-              {activityLevel?.toString()}
+              {data.activityLevel}
             </div>
             <div className="space-y-2">
               <Label htmlFor="calories">Calorie Information</Label>
-              {calories?.toString()}
+              {data.calories}
             </div>
           </div>
+          {/* <Button
+            // onClick={increment}
+            className="bg-black text-white hover:text-black"
+          >
+            click Me
+          </Button> */}
         </DialogContent>
       </Dialog>
     </div>
