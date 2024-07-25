@@ -29,6 +29,7 @@ import * as React from "react";
 
 //importing abi contract integration
 import { abi } from "../components/caloriesCalc-ABI";
+import RetrieveRecords from "./fetchRecords";
 
 export default function Calculate() {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
@@ -140,7 +141,10 @@ export default function Calculate() {
     <form onSubmit={submit}>
       <div className="flex items-center justify-center min-h-screen bg-gray-100">
         <Card className="w-full max-w-3xl p-8">
-          <ConnectButton />
+          <div className="display-flex">
+            <RetrieveRecords />
+            <ConnectButton />
+          </div>
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold">
               Calorie Calculator

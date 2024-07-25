@@ -42,7 +42,7 @@ export default function RetrieveRecords() {
   return (
     <div>
       <Dialog>
-        <DialogTrigger className="bg-black text-white hover:text-black" asChild>
+        <DialogTrigger className="bg-black text-white hover:text-black float-right" asChild>
           <Button>Update Profile</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[600px] bg-white">
