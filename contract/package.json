@@ -1,0 +1,37 @@
+{
+  "name": "@tokenization-platform/contracts",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "hardhat compile && hardhat export-abi",
+    "clean": "hardhat clean && hardhat clear-abi && rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "test": "hardhat test",
+    "lint": "hardhat lint"
+  },
+  "files": [
+    "abi_ts/"
+  ],
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ignition": "^0.15.5",
+    "@nomicfoundation/hardhat-ignition-viem": "^0.15.5",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
+    "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.8",
+    "@nomicfoundation/hardhat-viem": "^2.0.3",
+    "@nomicfoundation/ignition-core": "^0.15.5",
+    "@types/chai": "^4.3.16",
+    "@types/chai-as-promised": "^7.1.8",
+    "@types/mocha": "^10.0.7",
+    "chai": "^4.4.1",
+    "hardhat": "^2.22.6",
+    "hardhat-abi-exporter": "^2.10.1",
+    "hardhat-gas-reporter": "^1.0.10",
+    "rimraf": "^6.0.1",
+    "solidity-coverage": "^0.8.12"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-viem": "^2.0.2",
+    "@openzeppelin/contracts": "^5.0.2",
+    "@openzeppelin/contracts-upgradeable": "^5.0.2"
+  }
+}
