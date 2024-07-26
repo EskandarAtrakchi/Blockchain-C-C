@@ -33,7 +33,7 @@ export default function RetrieveRecords() {
             abi,
             address: "0x72805661557035298b11834EAB468bDFe7966f92",
             functionName: "getUserCalculations",
-            args: [address?.toString()],
+            args: [address || `0x${address ?? ""}`],
           });
 
           if (userCalculations.length > 0) {

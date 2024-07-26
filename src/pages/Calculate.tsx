@@ -83,7 +83,9 @@ export default function Calculate() {
       return;
     }
 
-    setResult(`Your daily calorie needs are about: ${tdee.toFixed(0)/100} calories.`);
+    const caloriesResults = '${tdee.toFixed(0)/100}';
+
+    setResult(`Your daily calorie needs are about: ${caloriesResults} calories.`);
     setIsModalOpen(true);
   };
 
@@ -96,7 +98,7 @@ export default function Calculate() {
     const height = formData.get("height") as string;
     const weight = formData.get("weight") as string;
     const activityLevel = formData.get("activityLevel") as string;
-    const results = result?.split(":")[1].trim();
+    const results = result?.split(":")[1]?.trim() || "";
 
     const activityLevelValue = activityLevelMap[activityLevel];
 
