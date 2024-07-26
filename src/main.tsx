@@ -1,23 +1,28 @@
+//importing styles 
 import "./index.css";
-import Router from "./Router.tsx";
-
-//
 import "@rainbow-me/rainbowkit/styles.css";
+
+//react relates 
+import Router from "./Router.tsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { config } from "./wagmi";
+//queryClient
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
+
+
+// importing from wagmi && rainbow;
+import { config } from "./wallets.ts";
+import { ResolvedRegister, WagmiProvider } from "wagmi";
 import { lightTheme } from "@rainbow-me/rainbowkit";
-
-const queryClient = new QueryClient();
-
 import {
   RainbowKitProvider,
   DisclaimerComponent,
 } from "@rainbow-me/rainbowkit";
 
+const queryClient = new QueryClient();
+
+//disclaimer on the wallet before connection 
 const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
   <Text>
     By connecting your wallet, you agree to the{" "}
@@ -28,7 +33,7 @@ const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <WagmiProvider config={config}>
+    <WagmiProvider config={config as ResolvedRegister['config']}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           theme={lightTheme({
