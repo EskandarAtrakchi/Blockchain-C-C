@@ -22,8 +22,8 @@ import Modal from "../components/Modal"; // Import the Modal component
 
 //importing wagmi contract integration
 import { useWriteContract, useWaitForTransactionReceipt, type BaseError } from "wagmi";
-import { getAccount } from "@wagmi/core";
-import { config } from "../wagmi";
+// import { getAccount } from "@wagmi/core";
+// import { config } from "../wagmi";
 
 import * as React from "react";
 
@@ -90,7 +90,8 @@ export default function Calculate() {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const ownerAddress = formData.get("ownerAddress") as string;
+    // const ownerAddress = formData.get("ownerAddress") as string;
+    const gender = formData.get("gender") as string;
     const age = formData.get("age") as string;
     const height = formData.get("height") as string;
     const weight = formData.get("weight") as string;
@@ -104,7 +105,7 @@ export default function Calculate() {
       abi,
       functionName: "recordCalculation",
       args: [
-        ownerAddress,
+        gender,
         BigInt(age),
         BigInt(height),
         BigInt(weight),
@@ -123,19 +124,19 @@ export default function Calculate() {
 
   //getting connected wallet address 
   // Function to get the connected account address
-  const getConnectedAccountAddress = () => {
-    const account = getAccount(config);
+  // const getConnectedAccountAddress = () => {
+  //   const account = getAccount(config);
 
-    if (account.status === "connected") {
-      console.log("Connected account address:", account.address);
-      return account.address;
-    } else {
-      console.log("No account connected");
-      return undefined;
-    }
-  };
+  //   if (account.status === "connected") {
+  //     console.log("Connected account address:", account.address);
+  //     return account.address;
+  //   } else {
+  //     console.log("No account connected");
+  //     return undefined;
+  //   }
+  // };
 
-  const ownerAddress = getConnectedAccountAddress();
+  // const ownerAddress = getConnectedAccountAddress();
 
   return (
     <form onSubmit={submit}>

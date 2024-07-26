@@ -51,7 +51,7 @@ export default function RetrieveRecords() {
             });
 
             setData({
-              gender: data.gender.toString(),
+              gender: result.gender.toString(),
               age: parseInt(result.age.toString()),
               height: parseInt(result.height.toString()),
               weight: parseInt(result.weight.toString()),
@@ -77,49 +77,43 @@ export default function RetrieveRecords() {
           className="bg-black text-white hover:text-black float-right"
           asChild
         >
-          <Button>Update Profile</Button>
+          <Button>Previos Record</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[600px] bg-white">
           <DialogHeader>
-            <DialogTitle>Update Your Profile</DialogTitle>
+            <DialogTitle>This is you previos record</DialogTitle>
             <DialogDescription>
-              Fill out the form below to update your personal information.
+              All of your records are saved on the blockchain, this card shows only the last record.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="address">Address</Label>
+                <Label htmlFor="address">Address</Label>:
                 <br />
                 {address?.toString()}
               </div>
               <br />
               <div className="space-y-2">
-                <Label htmlFor="gender">Gender</Label>
-                {data.gender}
+                <Label htmlFor="gender">Gender</Label>: {data.gender}
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="age">Age</Label>
-                {data.age}
+                <Label htmlFor="age">Age</Label>: {data.age}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="height">Height</Label>
-                {data.height}
+                <Label htmlFor="height">Height</Label>: {data.height}
               </div>
               <div className="space-y-2">
-                <Label htmlFor="weight">Weight</Label>
-                {data.weight}
+                <Label htmlFor="weight">Weight</Label>: {data.weight}
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="activity">Activity Level</Label>
-              {data.activityLevel}
+              <Label htmlFor="activity">Activity Level</Label>: {data.activityLevel}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="calories">Calorie Information</Label>
-              {data.calories}
+              <Label htmlFor="calories">Calorie Information</Label>: {data.calories}
             </div>
           </div>
           {/* <Button
