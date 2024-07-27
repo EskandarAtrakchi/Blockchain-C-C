@@ -83,9 +83,8 @@ export default function Calculate() {
       return;
     }
 
-    const caloriesResults = '${tdee.toFixed(0)/100}';
-
-    setResult(`Your daily calorie needs are about: ${caloriesResults} calories.`);
+    const caloriesResults = Number(tdee.toFixed(0));
+    setResult(`Your daily calorie needs are about: ${caloriesResults / 100} calories.`);
     setIsModalOpen(true);
   };
 
@@ -278,7 +277,7 @@ export default function Calculate() {
             {isConfirming && <div>Waiting for confirmation...</div>}
             {isConfirmed && <div>Transaction confirmed.</div>}
             {error && (
-              <div>Error: {(error as BaseError).shortMessage || error.message}</div>
+              <div>ALERT: {(error as BaseError).shortMessage || error.message}</div>
             )}
         </Modal>
       </div>
