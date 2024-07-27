@@ -10,7 +10,7 @@ import ReactDOM from "react-dom/client";
 //queryClient
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-
+ 
 // importing from wagmi && rainbow;
 import { config } from "./wallets.ts";
 import { ResolvedRegister, WagmiProvider } from "wagmi";
