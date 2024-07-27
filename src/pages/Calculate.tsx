@@ -1,4 +1,19 @@
+// Import the Modal component
+import Modal from "../components/Modal"; 
+
+//styles
 import "../index.css";
+
+// react related 
+import * as React from "react";
+
+//wagmi 
+import { useWriteContract, useWaitForTransactionReceipt, type BaseError } from "wagmi";
+
+//importing abi contract integration
+import { abi } from "../components/caloriesCalc-ABI";
+
+//ui components 
 import {
   Card,
   CardHeader,
@@ -18,17 +33,7 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useState } from "react";
 import ConnectButton from "../components/ConnectButton";
-import Modal from "../components/Modal"; // Import the Modal component
 
-//importing wagmi contract integration
-import { useWriteContract, useWaitForTransactionReceipt, type BaseError } from "wagmi";
-// import { getAccount } from "@wagmi/core";
-// import { config } from "../wagmi";
-
-import * as React from "react";
-
-//importing abi contract integration
-import { abi } from "../components/caloriesCalc-ABI";
 import RetrieveRecords from "./fetchRecords";
 
 export default function Calculate() {
@@ -122,22 +127,6 @@ export default function Calculate() {
   } = useWaitForTransactionReceipt({
     hash,
   });
-
-  //getting connected wallet address 
-  // Function to get the connected account address
-  // const getConnectedAccountAddress = () => {
-  //   const account = getAccount(config);
-
-  //   if (account.status === "connected") {
-  //     console.log("Connected account address:", account.address);
-  //     return account.address;
-  //   } else {
-  //     console.log("No account connected");
-  //     return undefined;
-  //   }
-  // };
-
-  // const ownerAddress = getConnectedAccountAddress();
 
   return (
     <form onSubmit={submit}>
