@@ -26,8 +26,13 @@ const queryClient = new QueryClient();
 const Disclaimer: DisclaimerComponent = ({ Text, Link }) => (
   <Text>
     By connecting your wallet, you agree to the{" "}
-    <Link href="/Disclaimer">Terms of Service</Link> and acknowledge you have
-    read and understand the protocol <Link href="/Disclaimer">Disclaimer</Link>
+    <Link href="https://calorie-calculator-project.vercel.app/Disclaimer">
+      Terms of Service
+    </Link>{" "}
+    and acknowledge you have read and understand the protocol{" "}
+    <Link href="https://calorie-calculator-project.vercel.app/Disclaimer">
+      Disclaimer
+    </Link>
   </Text>
 );
 

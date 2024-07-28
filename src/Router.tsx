@@ -19,7 +19,7 @@ const Routes = () => {
       element: <RetrieveRecords />,
     },
     {
-      path: "/Disclaimer",
+      path: "https://calorie-calculator-project.vercel.app/Disclaimer",
       element: <Disclaimer />,
     },
   ]);
