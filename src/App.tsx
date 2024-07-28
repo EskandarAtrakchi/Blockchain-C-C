@@ -1,4 +1,3 @@
-import "./App.css";
 import { Link } from "react-router-dom";
 
 function App() {
@@ -6,7 +5,12 @@ function App() {
     <>
       <h1>This is a test page</h1>
       <br />
-      <Link to={"/"} className="bg-black hover:bg-white text-white hover:text-black" >Send me back</Link>
+      <Link
+        to={"/"}
+        className="bg-black hover:bg-white text-white hover:text-black"
+      >
+        Send me back
+      </Link>
     </>
   );
 }
